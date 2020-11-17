@@ -3,7 +3,7 @@
  * https://css-tricks.com/international-box-sizing-awareness-day/
  * Do not modify these two selectors, please
  */
-html {
+ html {
   box-sizing: border-box;
 }
 *, *:before, *:after {
@@ -18,8 +18,41 @@ body {
   color: #545149;
   background-color: #f4f1ec;
   font-size: 24px;
+  font-family: 'Source Sans Pro', sans-serif; 
 }
-
+main {
+    margin: 0 auto;
+    width: 90%;
+    background-color: #f4f1ec;
+    text-align: center;
+}
+ #btn {
+  background-color: #4056A1;
+  font-family: 'Bungee', cursive;
+  color: white;
+  float: left;
+  margin-left: 290px;
+  margin-top: 1em;
+}
+textarea {
+  width: 200%;
+  background-color: #f4f1ec;
+  width: 700px;
+  border: none;
+  border-bottom: 5px solid #000000;
+}
+output.counter {
+  float: right;
+  margin-right: 290px;
+  font-family: 'Bungee', cursive;
+  font-weight: bold;
+  margin-top: 1em;
+}
+::placeholder{
+  font-family: 'Source Sans Pro', sans-serif; 
+  font-weight: bold;
+  font-size: 25px;
+}
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
