@@ -1,0 +1,21 @@
+nav {
+  height: 120px;
+  background-color: #4056A1;
+  color: white;
+  font-family: 'Bungee', cursive;
+  
+}
+
+span {
+  display: inline-block;
+  padding-top: 1.5em;
+  padding-left: 1.5em;
+  font-size: 36px;
+  margin-right: 15em;
+  margin-bottom: 1.5em;
+}
+.nav-label {
+font-size: 23px;  
+margin-right: 0;
+font-family: 'Source Sans Pro', sans-serif; 
+}
