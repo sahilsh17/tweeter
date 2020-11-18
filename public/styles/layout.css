@@ -70,6 +70,17 @@ output.counter {
   display: flex;
 }
 
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+.tweet-head {
+  display: flex;
+  align-items: center;
+}
+
 article.tweet footer {
 
   border: 5px solid black;
