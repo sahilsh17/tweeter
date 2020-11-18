@@ -55,15 +55,19 @@ output.counter {
   font-weight: bold;
   font-size: 25px;
 }
+ section.tweet-container {
+   margin-top: 6em;
+   position: relative;
 
+ }
  article.tweet header{
   border: 5px solid black;
   font-weight: bold;
   border-bottom: none;
   background-color: #f4f1ec;
-  height: 200px;
+  height: 300px;
   margin-top: 1.5em;
-  
+  display: flex;
 }
 
 article.tweet footer {
@@ -77,8 +81,8 @@ article.tweet footer {
 article.tweet header img {
   height: 100px;
   width: 100px;
-  
-  
+  display: flex;
+  justify-content: flex-start;
   
 }
 /* article.tweet header label {
@@ -98,9 +102,26 @@ article.tweet footer i {
     margin-right: 40px;
     margin-top: 30px;
 }
-article.tweet:hover{
-
+article.tweet footer p {
+  float: left;
+  font-size: medium;
+  margin-left: 60px;
+  margin-top:30px;
+  font-weight: bold;
 }
+ label#user-name{
+  display: none;
+} 
+article.tweet:hover #user-name {
+  display: block;
+  color: darkgray;
+}
+article.tweet:hover {
+  
+  box-shadow: 5px 10px dodgerblue;
+  
+}
+
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
