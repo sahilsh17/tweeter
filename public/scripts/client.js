@@ -30,9 +30,11 @@ $(document).ready(() => {
   ];
   
   const createTweetElement = function(data) {
-    const markUp = `<article class="tweet">
+    const $markUp = `<article class="tweet">
     <header>
-    <img src="https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/8_avatar-512.png"/><label>${data["user"]["name"]}</label><label id="user-name">${data["user"]["handle"]}</label>
+    <div class="head"> 
+    <div class='tweet-head'>
+    <img src="${data["user"]["avatars"]}"/><label>${data["user"]["name"]}</label></div>               <label id="user-name" class='handle'>${data["user"]["handle"]}</label></div>
      
       <p>${data["content"]["text"]}</p>
       
@@ -45,7 +47,7 @@ $(document).ready(() => {
       <i class="fa fa-refresh" aria-hidden="true"></i></footer>
   </article>`;
 
-    return markUp;
+    return $markUp;
   }
   const renderTweets = function(tweets) {
     // loops through tweets
@@ -59,5 +61,13 @@ $(document).ready(() => {
   }
    
   renderTweets(tweetData);
+
+  $('.new-tweet form').submit((event)=>{
+    event.preventDefault()
+    $.ajax({method: 'POST'})
+    .then(function(data){
+      console.log(data);
+    });
+  });
 
 });
