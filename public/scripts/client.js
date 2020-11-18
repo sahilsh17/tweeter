@@ -61,13 +61,20 @@ $(document).ready(() => {
   }
    
   renderTweets(tweetData);
-
+ 
+  //AJAX request
   $('.new-tweet form').submit((event)=>{
     event.preventDefault()
-    $.ajax({method: 'POST'})
+    let data = $('.new-tweet form').serialize();
+    console.log(tweetData[tweetData.length - 1]);
+    $.ajax('/tweets',{data: data, method: 'POST'})
     .then(function(data){
       console.log(data);
+    })
+    .catch((error) => {
+      console.log(error);
     });
+    
   });
 
 });
