@@ -20,6 +20,9 @@ body {
   font-size: 24px;
   font-family: 'Source Sans Pro', sans-serif; 
 }
+body > header {
+  margin-top: 120px;
+}
 main {
     margin: 0 auto;
     width: 90%;
@@ -31,19 +34,18 @@ main {
   font-family: 'Bungee', cursive;
   color: white;
   float: left;
-  margin-left: 290px;
   margin-top: 1em;
 }
 textarea {
-  width: 200%;
+  width: 100%;
   background-color: #f4f1ec;
-  width: 700px;
+  
   border: none;
   border-bottom: 5px solid #000000;
 }
 output.counter {
   float: right;
-  margin-right: 290px;
+  
   font-family: 'Bungee', cursive;
   font-weight: bold;
   margin-top: 1em;
@@ -52,6 +54,52 @@ output.counter {
   font-family: 'Source Sans Pro', sans-serif; 
   font-weight: bold;
   font-size: 25px;
+}
+
+ article.tweet header{
+  border: 5px solid black;
+  font-weight: bold;
+  border-bottom: none;
+  background-color: #f4f1ec;
+  height: 200px;
+  margin-top: 1.5em;
+  
+}
+
+article.tweet footer {
+
+  border: 5px solid black;
+  border-top: none;
+  height: 80px;
+  background-color: #f4f1ec;
+  margin-bottom: 2em;
+}
+article.tweet header img {
+  height: 100px;
+  width: 100px;
+  
+  
+  
+}
+/* article.tweet header label {
+  display: inline-block;
+  margin-bottom: 50px;
+  margin-right: 1000px;
+  
+} */
+hr {
+  border-top: 5px solid black;
+  width: 90%;
+  display: inline-block;
+  margin-bottom: auto;
+}
+article.tweet footer i {
+  float: right;
+    margin-right: 40px;
+    margin-top: 30px;
+}
+article.tweet:hover{
+
 }
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
