@@ -53,14 +53,18 @@ $(document).ready(() => {
     let $textValue = $('#tweet-text').val();
     
     if(!$textValue) {
-      alert('please enter a tweet to submit');
+      $('.new-tweet > h3').text(`Please enter a tweet to submit!!`);
+      $('.new-tweet > h3').slideDown('fast');
       return;
     } 
     if ($textValue.length > 140) {
       $('.new-tweet form').trigger("reset");
-      alert('Tweet character length should be less than 140');
+
+      $('.new-tweet > h3').text(`Too Long! please make sure the tweet length is upto 140 characters`);
+      $('.new-tweet > h3').slideDown('fast');
       return;
     }
+    $('.new-tweet > h3').slideUp('fast');
     let data = $('.new-tweet form').serialize();
     
     $.ajax('/tweets',{data: data, method: 'POST'}) //AJAX POST request for sending new tweets to server
