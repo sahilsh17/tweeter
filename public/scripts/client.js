@@ -10,9 +10,9 @@ $(document).ready(() => {
     <header>
     <div class="head"> 
     <div class='tweet-head'>
-    <img src="${data["user"]["avatars"]}"/><label>${data["user"]["name"]}</label></div>               <label id="user-name" class='handle'>${data["user"]["handle"]}</label></div>
+    <img src="${data["user"]["avatars"]}"/><label>${data["user"]["name"]}</label></div> <label id="user-name" class='handle'>${data["user"]["handle"]}</label></div>
      
-      <p>${data["content"]["text"]}</p>
+      <p>${escape(data["content"]["text"])}</p>
       
       <hr></header>
     
@@ -24,6 +24,11 @@ $(document).ready(() => {
   </article>`;
 
     return $markUp;
+  };
+  const escape =  function(str) {
+    let p = document.createElement('p');
+    p.appendChild(document.createTextNode(str));
+    return p.innerHTML;
   }
   const renderTweets = function(dataArray) {
     // loops through tweets
@@ -38,7 +43,7 @@ $(document).ready(() => {
       const $tweet = createTweetElement(data);
       $('.tweet-container').append($tweet); 
     }
-  }
+  };
 
    
  
