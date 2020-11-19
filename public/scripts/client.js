@@ -4,30 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 $(document).ready(() => {
-  const tweetData =[
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png",
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1605557908452
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd"
-      },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1605644308452
-    }
-  ];
   
   const createTweetElement = function(data) {
     const $markUp = `<article class="tweet">
@@ -49,32 +25,41 @@ $(document).ready(() => {
 
     return $markUp;
   }
-  const renderTweets = function(tweets) {
+  const renderTweets = function(dataArray) {
     // loops through tweets
     // calls createTweetElement for each tweet
     // takes return value and appends it to the tweets container
-
-    for (let data of tweetData) {
+    
+    for (let data of dataArray) {
       const $tweet = createTweetElement(data);
       $('.tweet-container').append($tweet); 
     }
   }
    
-  renderTweets(tweetData);
  
-  //AJAX request
-  $('.new-tweet form').submit((event)=>{
+  
+  $('.new-tweet form').submit((event)=>{ // event hander submit for form element
     event.preventDefault()
     let data = $('.new-tweet form').serialize();
     console.log(tweetData[tweetData.length - 1]);
-    $.ajax('/tweets',{data: data, method: 'POST'})
+    $.ajax('/tweets',{data: data, method: 'POST'}) //AJAX POST request for sending new tweets to server
     .then(function(data){
-      console.log(data);
+      
     })
     .catch((error) => {
       console.log(error);
     });
     
   });
-
+  const loadTweets = function() {
+    $.ajax('/tweets',{ method: 'GET'}) //AJAX GET request for rendering new tweets
+    .then(function(dataArray){
+      renderTweets(dataArray);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
+  loadTweets();
 });
+
