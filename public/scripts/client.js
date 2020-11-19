@@ -4,7 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 $(document).ready(() => {
-
+  
   const createTweetElement = function(data) {
     const $markUp = `<article class="tweet">
     <header>
@@ -90,5 +90,20 @@ $(document).ready(() => {
   };
   const b = false;
   loadTweets(b);
+  
+  $('.nav-label').click(function() {
+    if($('.new-tweet').is(":hidden")) {
+    $('.new-tweet').slideDown('fast');
+    $('#tweet-text').focus();
+    return;
+    }
+    
+    if($('.new-tweet').is(":visible")) {
+      $('.new-tweet').slideUp('fast');
+    }
+    
+  });
+ 
+  
 });
 
