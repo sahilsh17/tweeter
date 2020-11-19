@@ -29,12 +29,17 @@ $(document).ready(() => {
     // loops through tweets
     // calls createTweetElement for each tweet
     // takes return value and appends it to the tweets container
-    
+    if(!Array.isArray(dataArray)) {
+      const $tweet = createTweetElement(dataArray);
+      $('.tweet-container').prepend($tweet); 
+      return;
+    }
     for (let data of dataArray) {
       const $tweet = createTweetElement(data);
       $('.tweet-container').append($tweet); 
     }
   }
+
    
  
   
@@ -55,22 +60,26 @@ $(document).ready(() => {
     
     $.ajax('/tweets',{data: data, method: 'POST'}) //AJAX POST request for sending new tweets to server
     .then(function(data){
-      loadTweets();
+      $('.new-tweet form').trigger("reset");
+      const b = true;
+      loadTweets(b);
     })
     .catch((error) => {
       console.log(error);
     });
     
   });
-  const loadTweets = function() {
+  const loadTweets = function(b) {
     $.ajax('/tweets',{ method: 'GET'}) //AJAX GET request for rendering new tweets
     .then(function(dataArray){
-      renderTweets(dataArray);
+      if(b) {renderTweets(dataArray[dataArray.length - 1]);}
+      if(!b) {renderTweets(dataArray); }
     })
     .catch((error) => {
       console.log(error);
     });
   };
-  loadTweets();
+  const b = false;
+  loadTweets(b);
 });
 
