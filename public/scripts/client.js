@@ -4,7 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 $(document).ready(() => {
-  
+
   const createTweetElement = function(data) {
     const $markUp = `<article class="tweet">
     <header>
@@ -40,11 +40,22 @@ $(document).ready(() => {
   
   $('.new-tweet form').submit((event)=>{ // event hander submit for form element
     event.preventDefault()
+    let $textValue = $('#tweet-text').val();
+    
+    if(!$textValue) {
+      alert('please enter a tweet to submit');
+      return;
+    } 
+    if ($textValue.length > 140) {
+      $('.new-tweet form').trigger("reset");
+      alert('Tweet character length should be less than 140');
+      return;
+    }
     let data = $('.new-tweet form').serialize();
-    console.log(tweetData[tweetData.length - 1]);
+    
     $.ajax('/tweets',{data: data, method: 'POST'}) //AJAX POST request for sending new tweets to server
     .then(function(data){
-      
+      loadTweets();
     })
     .catch((error) => {
       console.log(error);
