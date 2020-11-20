@@ -5,9 +5,20 @@
  */
 $(document).ready(() => {
   
+  //The function returns the template string for article element
   const createTweetElement = function(data) {
+    let date = new Date(data['created_at']);
+    let date2 = new Date();
+    let days =  date2.getDay() - date.getDay();
+    if(days < 1) {
+      days = "";
+      days += "Created today";
+    } else {
+    days += " days ago";
+    }
+    
     const $markUp = `<article class="tweet">
-    <header>
+    <header class="article-header">
     <div class="head"> 
     <div class='tweet-head'>
     <img src="${data["user"]["avatars"]}"/><label>${data["user"]["name"]}</label></div> <label id="user-name" class='handle'>${data["user"]["handle"]}</label></div>
@@ -17,10 +28,11 @@ $(document).ready(() => {
       <hr></header>
     
     <footer>
-      <p>10 days ago</p>
-      <i class="fa fa-flag-o"></i>
-      <i class="fa fa-heart"></i>
-      <i class="fa fa-refresh" aria-hidden="true"></i></footer>
+      <p>${days}</p>
+      <i id="icon1" class="fa fa-flag-o"></i>
+      <i id="icon2"class="fa fa-heart"></i>
+      <i id="icon3" class="fa fa-refresh" aria-hidden="true"></i>
+    </footer>
   </article>`;
 
     return $markUp;
@@ -41,7 +53,8 @@ $(document).ready(() => {
     }
     for (let data of dataArray) {
       const $tweet = createTweetElement(data);
-      $('.tweet-container').append($tweet); 
+      
+      $('.tweet-container').prepend($tweet); 
     }
   };
 
@@ -49,11 +62,11 @@ $(document).ready(() => {
  
   
   $('.new-tweet form').submit((event)=>{ // event hander submit for form element
-    event.preventDefault()
+    event.preventDefault();
     let $textValue = $('#tweet-text').val();
     
     if(!$textValue) {
-      $('.new-tweet > h3').text(`Please enter a tweet to submit!!`);
+      $('.new-tweet > h3').text(`Please enter a valid tweet to submit!!`);
       $('.new-tweet > h3').slideDown('fast');
       return;
     } 
@@ -70,6 +83,7 @@ $(document).ready(() => {
     $.ajax('/tweets',{data: data, method: 'POST'}) //AJAX POST request for sending new tweets to server
     .then(function(data){
       $('.new-tweet form').trigger("reset");
+      $('.counter').text(140);
       const b = true;
       loadTweets(b);
     })
@@ -91,6 +105,7 @@ $(document).ready(() => {
   const b = false;
   loadTweets(b);
   
+  //When the nav-bar text on its right side is clicked, the text box toggles up and down
   $('.nav-label').click(function() {
     if($('.new-tweet').is(":hidden")) {
     $('.new-tweet').slideDown('fast');
@@ -103,7 +118,12 @@ $(document).ready(() => {
     }
     
   });
- 
+  
+  let $icons = $('footer > i');
+    $icons.hide();
+    if($icons.is(":hidden")) {
+
+    }
   
 });
 
