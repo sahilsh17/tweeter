@@ -10,11 +10,11 @@ $(document).ready(() => {
     let date = new Date(data['created_at']);
     let date2 = new Date();
     let days =  date2.getDay() - date.getDay();
-    if(days < 1) {
+    if (days < 1) {
       days = "";
       days += "Created today";
     } else {
-    days += " days ago";
+      days += " days ago";
     }
     
     const $markUp = `<article class="tweet">
@@ -41,20 +41,20 @@ $(document).ready(() => {
     let p = document.createElement('p');
     p.appendChild(document.createTextNode(str));
     return p.innerHTML;
-  }
+  };
   const renderTweets = function(dataArray) {
     // loops through tweets
     // calls createTweetElement for each tweet
     // takes return value and appends it to the tweets container
-    if(!Array.isArray(dataArray)) {
+    if (!Array.isArray(dataArray)) {
       const $tweet = createTweetElement(dataArray);
-      $('.tweet-container').prepend($tweet); 
+      $('.tweet-container').prepend($tweet);
       return;
     }
     for (let data of dataArray) {
       const $tweet = createTweetElement(data);
       
-      $('.tweet-container').prepend($tweet); 
+      $('.tweet-container').prepend($tweet);
     }
   };
 
@@ -65,11 +65,11 @@ $(document).ready(() => {
     event.preventDefault();
     let $textValue = $('#tweet-text').val();
     
-    if(!$textValue) {
+    if (!$textValue) {
       $('.new-tweet > h3').text(`Please enter a valid tweet to submit!!`);
       $('.new-tweet > h3').slideDown('fast');
       return;
-    } 
+    }
     if ($textValue.length > 140) {
       $('.new-tweet form').trigger("reset");
 
@@ -81,22 +81,26 @@ $(document).ready(() => {
     let data = $('.new-tweet form').serialize();
     
     $.ajax('/tweets',{data: data, method: 'POST'}) //AJAX POST request for sending new tweets to server
-    .then(function(data){
+      .then(function() {
       $('.new-tweet form').trigger("reset");
-      $('.counter').text(140);
-      const b = true;
-      loadTweets(b);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+        $('.counter').text(140);
+        const b = true;
+        loadTweets(b);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     
   });
   const loadTweets = function(b) {
     $.ajax('/tweets',{ method: 'GET'}) //AJAX GET request for rendering new tweets
-    .then(function(dataArray){
-      if(b) {renderTweets(dataArray[dataArray.length - 1]);}
-      if(!b) {renderTweets(dataArray); }
+      .then(function(dataArray) {
+        if (b) {
+          renderTweets(dataArray[dataArray.length - 1]);
+        }
+        if (!b) {
+          renderTweets(dataArray);
+        }
     })
     .catch((error) => {
       console.log(error);
@@ -107,23 +111,17 @@ $(document).ready(() => {
   
   //When the nav-bar text on its right side is clicked, the text box toggles up and down
   $('.nav-label').click(function() {
-    if($('.new-tweet').is(":hidden")) {
-    $('.new-tweet').slideDown('fast');
-    $('#tweet-text').focus();
-    return;
+    if ($('.new-tweet').is(":hidden")) {
+      $('.new-tweet').slideDown('fast');
+      $('#tweet-text').focus();
+      return;
     }
     
-    if($('.new-tweet').is(":visible")) {
+    if ($('.new-tweet').is(":visible")) {
       $('.new-tweet').slideUp('fast');
     }
     
   });
-  
-  let $icons = $('footer > i');
-    $icons.hide();
-    if($icons.is(":hidden")) {
-
-    }
   
 });
 
