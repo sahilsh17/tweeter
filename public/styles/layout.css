@@ -32,6 +32,7 @@ main {
 section.new-tweet {
   display: none;
 }
+
 section.new-tweet > h3 {
   border: 4px solid red;
   width: 80%;
@@ -91,6 +92,7 @@ output.counter {
 }
 article.tweet{
   width: 70%;
+  margin-bottom: 2em;
 }
 .head {
   display: flex;
@@ -102,14 +104,15 @@ article.tweet{
   display: flex;
   align-items: center;
 }
-
+#icon1, #icon2, #icon3{
+  display: none;
+}
 article.tweet footer {
 
   border: 5px solid black;
   border-top: none;
   height: 80px;
   background-color: #f4f1ec;
-  margin-bottom: 2em;
 }
 article.tweet header img {
   height: 100px;
@@ -118,12 +121,7 @@ article.tweet header img {
   justify-content: flex-start;
   
 }
-/* article.tweet header label {
-  display: inline-block;
-  margin-bottom: 50px;
-  margin-right: 1000px;
-  
-} */
+
 hr {
   border-top: 5px solid black;
   width: 90%;
@@ -142,6 +140,7 @@ article.tweet footer p {
   margin-top:30px;
   font-weight: bold;
 }
+
  label#user-name{
   display: none;
 } 
@@ -154,6 +153,15 @@ article.tweet:hover {
   box-shadow: 5px 10px dodgerblue;
   
 }
+article.tweet:hover #icon1 {
+  display: block;
+}
+article.tweet:hover #icon2 {
+  display: block;
+}
+article.tweet:hover #icon3 {
+  display: block;
+}
 .article-header {
   width: 100%;
 }
@@ -163,6 +171,8 @@ article.tweet:hover {
     
   }
 }
+
+/* Responsive design for screens with minimum width 1024px */
 @media only screen and (min-width: 1024px) {
   body {
     display: flex;
@@ -177,8 +187,14 @@ article.tweet:hover {
     
     
   } 
-  section.new-tweet > form {
+  section.new-tweet > h3 {
     margin-top: 200px;
+    width:70%;
+    text-align: center;
+    margin-left: 146px;
+  }
+  section.new-tweet > form {
+    margin-top: 150px;
     width:70%;
     text-align: center;
     margin-left: 146px;
