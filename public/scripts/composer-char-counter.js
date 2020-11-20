@@ -1,8 +1,7 @@
 $(document).ready(function() {
   
-  
-  
-  $('#tweet-text').keypress((e) => {
+  //keypress event for textarea counter
+  $('#tweet-text').keyup(() => {
     let count = $('.counter');
     let textCount = 140 - $('#tweet-text').val().length;
     console.log(this);
@@ -10,8 +9,12 @@ $(document).ready(function() {
     if (textCount < 0) {
       count.css('color', 'red');
     }
+    if (textCount > 0) {
+      count.css('color', 'black');
+    }
   });
   
+
   
 });
 
