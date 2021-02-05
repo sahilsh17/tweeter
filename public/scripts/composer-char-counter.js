@@ -16,7 +16,7 @@ $(document).ready(function() {
   var btn = $('#bottom-top');
 
   $(window).scroll(function() {
-    if ($(window).scrollTop() > 125) {
+    if ($(window).scrollTop() > 200) {
       
       btn.addClass('show');
     } else {
@@ -25,7 +25,13 @@ $(document).ready(function() {
   });
   btn.on('click', function(e) {
     e.preventDefault();
-    $('html, body').animate({scrollTop:0}, '125');
+    $('html, body').animate({scrollTop:0}, '200');
+    if ($('.new-tweet').is(":hidden")) {
+      $('.new-tweet').slideDown('fast');
+      $('#tweet-text').focus();
+      return;
+    }  
+    
   });
   
 });
