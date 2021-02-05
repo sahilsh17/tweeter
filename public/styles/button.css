@@ -1,11 +1,18 @@
-.bottom-top{
+#bottom-top{
   border-radius: 50%;
   width:70px;
   height: 70px;
-  float: right;
+  
   margin: 1em;
   background-color: red;
+  visibility: hidden;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
 }
-.bottom-top i{
+#bottom-top i{
   color:white;
+}
+#bottom-top.show{
+  visibility: visible;
 }
