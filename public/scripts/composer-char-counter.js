@@ -13,8 +13,20 @@ $(document).ready(function() {
       count.css('color', 'black');
     }
   });
-  
+  var btn = $('#bottom-top');
 
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 125) {
+      
+      btn.addClass('show');
+    } else {
+      btn.removeClass('show');
+    }
+  });
+  btn.on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({scrollTop:0}, '125');
+  });
   
 });
 
