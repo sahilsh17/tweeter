@@ -16,3 +16,7 @@
 #bottom-top.show{
   visibility: visible;
 }
+#bottom-top:hover {
+  cursor: pointer;
+  background-color: rgb(224, 116, 116);
+}
